@@ -28,7 +28,7 @@
     @include view-right();
   }
 
-  &.view-leave {
+  &.view-leave-active {
     @include view-left();
   }
 }
@@ -45,7 +45,7 @@
       @include view-right();
     }
 
-    &.view-leave {
+    &.view-leave-active {
       @include view-left();
     }
   }
@@ -57,7 +57,7 @@
       @include view-left();
     }
 
-    &.view-leave {
+    &.view-leave-active {
       @include view-right();
     }
   }
