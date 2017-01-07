@@ -1,10 +1,10 @@
 <template>
   <div v-if="circles.length > 0" class="swiper-pagination">
-    <span v-for="($index, c) in circles"
+    <span v-for="(c, index) in circles"
           class="circle"
           :style="{
             'backgroundColor': pagerColor,
-            'opacity': activeIndex == $index ? 1 : 0.4
+            'opacity': activeIndex == index ? 1 : 0.4
           }"></span>
   </div>
 </template>
@@ -57,19 +57,17 @@
       }
     },
 
-    methods: {
-      init() {
-        let circles = []
-        for (let i = 0; i < this.size; i++) {
-          circles.push(i)
-        }
-
-        this.circles = circles
-      },
-
-      activate(index) {
-        this.activeIndex = index
+    beforeCreate() {
+      let circles = []
+      for (let i = 0; i < this.size; i++) {
+        circles.push(i)
       }
+
+      this.circles = circles
+    },
+
+    beforeRouteEnter(index) {
+      this.activeIndex = index
     }
   }
 </script>

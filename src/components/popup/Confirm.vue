@@ -3,21 +3,17 @@
        :class="{'popup-showing active': state == 1, 'popup-showing popup-hidden': state == 2}">
     <div class="popup">
       <div class="popup-head">
-        <div class="popup-title">
-          {{{ title }}}
-        </div>
+        <div class="popup-title" v-html="title"></div>
       </div>
 
-      <div class="popup-body">
-        {{{ content }}}
-      </div>
+      <div class="popup-body" v-html="content"></div>
 
       <div class="popup-buttons">
-        <button class="{{ 'button button-' + cancelTheme }}" @click="onCancel()">
+        <button :class="'button button-' + cancelTheme" @click="onCancel()">
           {{ cancelText }}
         </button>
 
-        <button class="{{ 'button button-' + okTheme }}" @click="onOk()">
+        <button :class="'button button-' + okTheme" @click="onOk()">
           {{ okText }}
         </button>
       </div>
@@ -61,7 +57,7 @@
     methods: {
       show(options) {
         extend(this, options)
-        
+
         window.$backdrop.show()
         this.state = 1
 

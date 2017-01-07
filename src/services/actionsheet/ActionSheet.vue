@@ -4,7 +4,7 @@
       <div class="action-sheet">
         <div class="action-sheet-group">
           <div class="action-sheet-title">{{ title }}</div>
-          <button class="button action-sheet-option" v-for="($index, b) in buttons" @click="hide($index)">
+          <button class="button action-sheet-option" v-for="(b, index) in buttons" @click="hide(index)">
             {{ b.text }}
           </button>
         </div>
@@ -89,7 +89,7 @@
         margin: 0;
         border-radius: 0;
 
-        .action-sheet-title, .button { 
+        .action-sheet-title, .button {
           font-size: 14px;
           color: inherit;
         }
@@ -133,13 +133,13 @@
   {
     @include transition-duration(.3s);
     @include transition-timing-function(cubic-bezier(0.4, 0.6, 0.2, 1));
-  } 
+  }
 
 </style>
 <script>
   export default {
     el: '[von-action-sheet]',
-    
+
     data() {
       return {
         defaultOptions: {
@@ -154,7 +154,7 @@
       }
     },
 
-    init() {
+    beforeCreate () {
       let el = document.createElement('div')
       el.setAttribute('von-action-sheet', '')
       document.body.appendChild(el)

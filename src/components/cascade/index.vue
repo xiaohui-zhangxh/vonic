@@ -1,11 +1,11 @@
 <template>
   <div class="list list-ios thin-border von-cascade">
-    <label v-for="($index, f) in fields" 
-           class="item item-ios item-icon-right" 
-           @click="showCascadePanel($index)">
+    <label v-for="(f, index) in fields"
+           class="item item-ios item-icon-right"
+           @click="showCascadePanel(index)">
       {{ f }}
       <i class="icon ion-ios-arrow-right"></i>
-      <span class="item-note">{{ value[$index] }}</span>
+      <span class="item-note">{{ value[index] }}</span>
     </label>
   </div>
 </template>
@@ -70,10 +70,10 @@
       }
     },
 
-    ready() {
+    mounted() {
       this.options = this.filter()
     },
-    
+
     methods: {
       showCascadePanel(index) {
         let v = this.value, f = this.fields

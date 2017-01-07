@@ -4,7 +4,7 @@
       <div class="hairline-top"></div>
       <div class="col" v-for="c in cols" @click="cellClicked(r*cols.length + c)">
         <div v-if="c" class="hairline-left"></div>
-        {{{ items[r*cols.length + c] }}}
+        <span v-html="items[r*cols.length + c]"></span>
       </div>
     </div>
     <div class="hairline-bottom"></div>

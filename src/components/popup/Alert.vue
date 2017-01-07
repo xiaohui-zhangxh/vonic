@@ -3,17 +3,13 @@
        :class="{'popup-showing active': state == 1, 'popup-showing popup-hidden': state == 2}">
     <div class="popup">
       <div class="popup-head">
-        <div class="popup-title">
-          {{{ title }}}
-        </div>
+        <div class="popup-title" v-html="title"></div>
       </div>
 
-      <div class="popup-body">
-        {{{ content }}}
-      </div>
+      <div class="popup-body" v-html="content"></div>
 
       <div class="popup-buttons">
-        <button class="{{ 'button button-' + okTheme + ' button-block' }}" @click="onOk()">
+        <button :class="'button button-' + okTheme + ' button-block'" @click="onOk()">
           {{ okText }}
         </button>
       </div>

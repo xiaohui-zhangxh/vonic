@@ -1,7 +1,7 @@
 <template>
-  <div class="tabs-striped tabs-{{ position }} tabs-background-{{ bgColor }} tabs-color-{{ tabColor }}">
+  <div :class="['tabs-striped', 'tabs-' + position, 'tabs-background' + bgColor, 'tabs-color-' + tabColor]">
     <div class="tabs">
-      <a v-for="(index, tabItem) in tabItems"
+      <a v-for="(tabItem, index) in tabItems"
          class="tab-item"
          :class="{'active': activeIndex == index}"
          @click="tabChanged(index)">

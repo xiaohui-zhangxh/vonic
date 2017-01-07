@@ -1,9 +1,9 @@
 <template>
   <div class="list von-radio" thin-border>
     <label class="item item-icon-left"
-           v-for="(index, option) in options">
-      <input type="radio" name="{{ radioId }}" @click="onOptionClick(index)">
-      <i class="{{ 'icon ion-ios-checkmark ' + (value == index ? theme : 'grey') }}"></i>
+           v-for="(option, index) in options">
+      <input type="radio" :name="radioId" @click="onOptionClick(index)">
+      <i :class="'icon ion-ios-checkmark ' + (value == index ? theme : 'grey')"></i>
       <span>{{ option }}</span>
     </label>
   </div>
@@ -75,8 +75,8 @@
     },
 
     methods: {
-      onOptionClick($index) {
-        this.value = $index
+      onOptionClick(index) {
+        this.value = index
       }
     }
   }

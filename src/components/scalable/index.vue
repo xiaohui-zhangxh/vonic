@@ -1,5 +1,5 @@
 <template>
-  <div class="von-scalable-wrapper" :style="{width: width, height: height}">
+  <div class="von-scalable-wrapper" :style="{width: normalizedWidth, height: normalizedHeight}">
     <div class="von-scalable">
       <slot></slot>
     </div>
@@ -41,29 +41,36 @@
     props: {
       scale: {
         type: Number,
-        default: 2,
-        coerce: (v) => {
-          return v < 1 ? 1 : v
-        }
+        default: 2
       },
 
       width: {
         type: String,
         default: '100%',
-        validator: widthAndHeightValidator,
-        coerce: widthAndHeightCoerce
+        validator: widthAndHeightValidator
       },
 
       height: {
         type: String,
         default: '100%',
-        validator: widthAndHeightValidator,
-        coerce: widthAndHeightCoerce
+        validator: widthAndHeightValidator
       }
     },
 
-    ready() {
-      scaleContent(this.$el, this.scale)
+    computed: {
+      normalizedScale () {
+        return this.scale < 1 ? 1 : this.scale
+      },
+      normalizedWidth () {
+        return widthAndHeightCoerce(this.width)
+      },
+      normalizedHeight () {
+        return widthAndHeightCoerce(this.height)
+      }
+    },
+
+    mounted() {
+      scaleContent(this.$el, this.normalizedScale)
     }
   }
 </script>

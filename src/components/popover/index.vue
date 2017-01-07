@@ -115,7 +115,7 @@
       }
     },
 
-    ready() {
+    mounted () {
       if (this.target) {
         let t = document.querySelector(this.target)
         let _onclick = t.onclick

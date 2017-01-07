@@ -1,12 +1,14 @@
 <template>
   <div von-nav class="navbar" :class="{'hide': hideNavbar}">
-    <div v-if="showBackButton" class="back-button" @click="backButtonClicked($event)" transition="fade">
-      {{{ backButtonText }}}
-    </div>
+    <transition name="fade">
+      <div v-if="showBackButton" class="back-button" @click="backButtonClicked($event)" v-html="backButtonText">
+      </div>
+    </transition>
 
-    <div v-if="showMenuButton" class="menu-button" @click="menuButtonClicked($event)" transition="fade">
-      {{{ menuButtonText }}}
-    </div>
+    <transition name="fade">
+      <div v-if="showMenuButton" class="menu-button" @click="menuButtonClicked($event)" v-html="menuButtonText">
+      </div>
+    </transition>
   </div>
 </template>
 <style lang='scss'>
@@ -97,7 +99,7 @@
         font-size: 18px;
         line-height: 44px;
 
-        &.title-transition {
+        &.title-enter-active, &.title-leave {
           @include transition-duration($ios-transition-duration);
           @include transition-timing-function($ios-transition-timing-function);
           -webkit-transition-property: opacity, -webkit-transform, box-shadow;
@@ -106,13 +108,13 @@
       }
     }
 
-    .fade-transition {
+    .fade-enter-active, .fade-leave {
       @include transition-duration($android-transition-duration);
       @include transition-timing-function($android-transition-timing-function);
       opacity: 1;
     }
 
-    .fade-enter, .fade-leave {
+    .fade-enter, .fade-leave-active {
       opacity: 0;
     }
   }
@@ -120,7 +122,7 @@
   /* android or other */
   .grade-b .navbar {
     .center .title,
-    .fade-transition
+    .fade-enter-active, .fade-leave
     {
       @include transition-property(all);
       @include transition-duration($android-transition-duration);
@@ -153,7 +155,7 @@
     } else {
       t.className = 'title'
     }
-    
+
     t.innerHTML = title
 
     let reverse = direction == 'back'

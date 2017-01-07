@@ -29,10 +29,10 @@
   .von-counter {
     z-index: 1;
     @include display-flex();
-    
+
     height: $counter-height;
     border-radius: $counter-border-radius;
-    
+
     .counter-left, .counter-right {
       width: $counter-height * 1.5;
       height: $counter-height - 2px;
@@ -66,14 +66,14 @@
       line-height: $counter-height - 2px;
       text-align: center;
       box-shadow: 0px 0px 5px #ddd inset;
-    
+
       select {
         position: absolute;
         top: -50000px;
         left: -50000px;
       }
     }
-  
+
   }
 </style>
 
@@ -104,13 +104,14 @@ export default {
     }
   },
 
-  ready() {
+  mounted () {
     for (let i=this.min; i<=this.max; i++) {
       this.options.push(i);
     }
-
-    this.$el.classList.add('border-' + this.theme)
-    this.$el.classList.add('bg-' + this.theme)
+    this.$nextTick(function(){
+      this.$el.classList.add('border-' + this.theme)
+      this.$el.classList.add('bg-' + this.theme)
+    })
   },
 
   methods: {

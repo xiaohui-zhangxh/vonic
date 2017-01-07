@@ -3,9 +3,7 @@
        :class="{'popup-showing active': state == 1, 'popup-showing popup-hidden': state == 2}">
     <div class="popup von-popup" :class="cssClass">
       <div v-if="title" class="popup-head">
-        <div class="popup-title">
-          {{{ title }}}
-        </div>
+        <div class="popup-title" v-html="title"></div>
       </div>
 
       <div class="popup-body" :class="{'no-content': state == 0}">
@@ -13,9 +11,7 @@
       </div>
 
       <div v-if="buttons.length > 0" class="popup-buttons">
-        <button v-for="($index, b) in buttons" class="{{ 'button button-' + (b.theme || default_button_theme) + ' button-block' }}" @click="hide($index)">
-          {{{ b.text }}}
-        </button>
+        <button v-for="(b, index) in buttons" :class="'button button-' + (b.theme || default_button_theme) + ' button-block'" @click="hide(index)" v-html="b.text"></button>
       </div>
     </div>
   </div>

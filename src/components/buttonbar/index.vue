@@ -1,7 +1,7 @@
 <template>
   <div class="button-bar von-button-bar">
-    <a v-for="(index, tabItem) in tabItems"
-       class="{{ getButtonClass(index) }}" @click="tabChanged(index)">
+    <a v-for="(tabItem, index) in tabItems"
+       :class="getButtonClass(index)" @click="tabChanged(index)">
       {{ tabItem }}
     </a>
   </div>

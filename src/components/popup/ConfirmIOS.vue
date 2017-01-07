@@ -13,13 +13,11 @@
       </div>
 
       <div class="popup-buttons">
-        <button class="{{ 'button button-block button-positive button-outline button-cancel' }}" @click="onCancel()">
-          {{{ cancelText }}}
+        <button :class="'button button-block button-positive button-outline button-cancel'" @click="onCancel()">
+          <span v-html="cancelText"></span>
           <div class="hairline-right"></div>
         </button>
-        <button class="{{ 'button button-block button-positive button-outline button-ok' }}" @click="onOk()">
-          {{{ okText }}}
-        </button>
+        <button :class="'button button-block button-positive button-outline button-ok'" @click="onOk()" v-html="okText"></button>
       </div>
     </div>
   </div>

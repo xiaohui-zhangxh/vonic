@@ -1,10 +1,12 @@
 <template>
   <div von-app>
     <navbar></navbar>
-    <router-view transition="view" class="view"></router-view>
+    <transition name="view">
+      <router-view class="view"></router-view>
+    </transition>
   </div>
 
-  <modal v-ref:modal></modal>
+  <modal ref="modal"></modal>
 </template>
 <style lang='scss'>
   @import "../scss/vonic";
@@ -37,15 +39,18 @@
         gradeClass: 'grade-a'
       }
     },
-    
-    ready() {
+
+    mounted() {
       // grade-a for ios, grade-b for android & other
       if (utils.is_ios_device()) {
         this.gradeClass = 'grade-a'
       } else {
         this.gradeClass = 'grade-b'
       }
-      document.querySelector('body').className = this.gradeClass
+
+      this.$nextTick(function(){
+        document.querySelector('body').className = this.gradeClass
+      })
 
       // Model Service
       window.$vonicModal = this.$refs.modal

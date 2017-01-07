@@ -1,11 +1,11 @@
 <template>
   <div class="tabbar" :class="{'visible': state == 1}">
-    <div v-for="($index, menu) in menus"
+    <div v-for="(menu, index) in menus"
          class="tabbar-item"
-         :style="{'color': menuIndex == $index ? activeMenuColor : menuColor}"
-         @click="menuClicked($index)">
+         :style="{'color': menuIndex == index ? activeMenuColor : menuColor}"
+         @click="menuClicked(index)">
       <div class="icon-wrapper">
-        <i class="icon {{ menuIndex == $index ? menu.iconOn : menu.iconOff }}"></i>
+        <i :class="['icon', menuIndex == index ? menu.iconOn : menu.iconOff]"></i>
       </div>
 
       <div class="text-wrapper">
@@ -33,7 +33,7 @@
     margin: 0;
     padding: 0;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-    /* 
+    /*
     &:before {
       @include hairline(top);
     }
@@ -115,7 +115,7 @@
       }
     },
 
-    ready() {
+    mounted () {
       this.show()
       setTimeout(() => {
         this.$el.classList.add('fixed')
@@ -135,13 +135,13 @@
         }
       },
 
-      activate(index) {
-        this.menuIndex = index
-      },
-
       show() {
         this.state = 1
       }
+    },
+
+    beforeRouteEnter(index) {
+      this.menuIndex = index
     },
 
     beforeDestroy() {

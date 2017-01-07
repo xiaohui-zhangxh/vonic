@@ -11,7 +11,7 @@
       }
     },
 
-    init() {
+    beforeCreate () {
       let el = document.createElement('div')
       el.setAttribute('von-backdrop', '')
       document.body.appendChild(el)

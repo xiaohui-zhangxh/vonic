@@ -2,7 +2,7 @@
   <div class="von-input-wrapper" :class="{'has-floating-label': floatingLabel == 'true'}">
     <label class="item item-input thin-border von-input" :class="{'item-floating-label': floatingLabel == 'true'}">
       <span v-if="label != ''" class="input-label" :class="{'has-input': floatingLabel == 'true' && !!value}">{{label}}</span>
-      <input type="{{type}}" placeholder="{{ placeholder }}" v-model="value">
+      <input :type="type" :placeholder="placeholder" v-model="value">
     </label>
 
     <span class="input-clear" :class="{'active': showClearButton}" @click="clear()"></span>

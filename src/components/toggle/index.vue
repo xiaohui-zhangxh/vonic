@@ -1,8 +1,8 @@
 <template>
   <div class="item item-toggle von-toggle" thin-border>
     {{ text }}
-    <label class="{{ toggleClass() }}" @click="onToggle()">
-      <input type="checkbox" id="{{ toggleId }}">
+    <label :class="toggleClass()" @click="onToggle()">
+      <input type="checkbox" :id="toggleId">
       <div class="track">
         <div class="handle"></div>
       </div>
@@ -37,7 +37,7 @@
       }
     },
 
-    ready() {
+    mounted () {
       document.getElementById(this.toggleId).checked = this.value
     },
 

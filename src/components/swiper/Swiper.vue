@@ -4,7 +4,7 @@
       <slot></slot>
     </div>
 
-    <pagination v-if="direction == 'horizontal'" :size="itemCount" :pager-color="pagerColor" v-ref:pagination></pagination>
+    <pagination v-if="direction == 'horizontal'" :size="itemCount" :pager-color="pagerColor" ref="pagination"></pagination>
   </div>
 </template>
 <style lang='scss'>
@@ -68,14 +68,12 @@
       width: {
         type: String,
         default: '100%',
-        validator: widthAndHeightValidator,
-        coerce: widthAndHeightCoerce
+        validator: widthAndHeightValidator
       },
       height: {
         type: String,
         default: '100%',
-        validator: widthAndHeightValidator,
-        coerce: widthAndHeightCoerce
+        validator: widthAndHeightValidator
       },
       pagerColor: {
         type: String,
@@ -90,9 +88,18 @@
       }
     },
 
-    ready() {
-      this.$el.style.width = this.width
-      this.$el.style.height = this.height
+    computed: {
+      normalizedWidth () {
+        return widthAndHeightCoerce(this.width)
+      },
+      normalizedHeight () {
+        return widthAndHeightCoerce(this.height)
+      }
+    },
+
+    mounted () {
+      this.$el.style.width = this.normalizedWidth
+      this.$el.style.height = this.normalizedHeight
 
       let swiper = new Swiper({
         direction: this.direction

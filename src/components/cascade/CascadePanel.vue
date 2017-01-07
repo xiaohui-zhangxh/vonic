@@ -5,7 +5,7 @@
     </div>
 
     <div class="list options" thin-border>
-      <div class="item" v-for="($index, option) in options" @click="optionClicked($index)">
+      <div class="item" v-for="(option, index) in options" @click="optionClicked(index)">
         {{ option }}
       </div>
     </div>
@@ -23,7 +23,7 @@
     background-color: #f5f5f5;
     z-index: 12;
     box-sizing: border-box;
-    
+
     transition: transform .2s ease-in-out;
     -webkit-transition: -webkit-transform .2s ease-in-out;
 
@@ -57,7 +57,7 @@
       overflow-x: hidden;
       overflow-y: overflow;
       -webkit-overflow-scrolling: touch;
-    
+
       .item {
         min-height: 44px;
         height: 44px;
@@ -74,10 +74,10 @@
 </style>
 <script>
   import Vue from 'vue'
-  
+
   const animation_duration = 300
   let bus = new Vue();
-  
+
   export default {
     data() {
       return {
@@ -113,7 +113,7 @@
 
         return new Promise((resolve) => {
           bus.$on('optionClickedEvent', (data) => {
-            resolve(data.optionIndex) 
+            resolve(data.optionIndex)
             this._hide()
           })
         })

@@ -1,10 +1,10 @@
 <template>
   <div class="list von-checkbox" thin-border>
     <label class="item item-icon-right"
-           v-for="(index, option) in options">
-      <input type="checkbox" name="{{ checkboxName }}" id="{{ checkboxName + '-' + index }}" @click="onOptionClick(index)">
+           v-for="(option, index) in options">
+      <input type="checkbox" :name="checkboxName" :id="checkboxName + '-' + index" @click="onOptionClick(index)">
       <span>{{ option }}</span>
-      <i class="{{ isChecked(index) ? ('icon ion-ios-checkmark-empty ' + theme) : '' }}"></i>
+      <i :class="isChecked(index) ? ('icon ion-ios-checkmark-empty ' + theme) : ''"></i>
     </label>
   </div>
 </template>

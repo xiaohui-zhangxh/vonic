@@ -2,8 +2,8 @@
   <div class="bar bar-header item-input-inset">
     <label class="item-input-wrapper">
       <i class="icon ion-ios-search placeholder-icon"></i>
-      <form action='' id="{{formId}}" >
-        <input type="search" placeholder="{{placeholder}}" v-model="value">
+      <form action='' :id="formId" >
+        <input type="search" :placeholder="placeholder" v-model="value">
       </form>
     </label>
     <button class="button button-clear button-positive" @click='clearSearch()'>
@@ -36,8 +36,10 @@
       }
     },
 
-    ready() {
-      document.getElementById(this.formId).onsubmit = this.search
+    mounted () {
+      this.$nextTick(function(){
+        document.getElementById(this.formId).onsubmit = this.search
+      })
     },
 
     methods: {
